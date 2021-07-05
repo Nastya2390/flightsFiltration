@@ -42,12 +42,5 @@ public class FlightBuilder {
         return new Flight(segments);
     }
 
-    public static List<Flight> createFlightFromSegments(List<List<Segment>> listOfSegments) {
-        List<Flight> resultList = new ArrayList<>();
-        for (List<Segment> list : listOfSegments) {
-            resultList.add(new Flight(list));
-        }
-        return resultList;
-    }
 }
 
