@@ -20,6 +20,8 @@ public class RulesTest {
         Flight flight = FlightBuilder.createFlight(twoDaysBeforeNow, twoDaysBeforeNow.plusHours(2));
         List<Flight> filteredFlights = new DepartureBeforeCurrentDateFiltrationRule(Collections.singletonList(flight)).filter();
         Assert.assertFalse(filteredFlights.isEmpty());
+        Assert.assertEquals(filteredFlights.size(), 1);
+        Assert.assertEquals(flight.toString(), filteredFlights.iterator().next().toString());
     }
 
     @Test
@@ -36,6 +38,8 @@ public class RulesTest {
         Flight flight = FlightBuilder.createFlight(twoDaysFromNow, twoDaysFromNow.minusHours(2));
         List<Flight> filteredFlights = new ArrivalBeforeDepartureFiltrationRule(Collections.singletonList(flight)).filter();
         Assert.assertFalse(filteredFlights.isEmpty());
+        Assert.assertEquals(filteredFlights.size(), 1);
+        Assert.assertEquals(flight.toString(), filteredFlights.iterator().next().toString());
     }
 
     @Test
@@ -60,6 +64,8 @@ public class RulesTest {
         Flight flight = FlightBuilder.createFlight(twoDaysFromNow, twoDaysFromNow.plusHours(2), twoDaysFromNow.plusHours(4).plusSeconds(1), twoDaysFromNow.plusHours(6));
         List<Flight> filteredFlights = new TwoHoursTimeBetweenSegmentsFiltrationRule(Collections.singletonList(flight)).filter();
         Assert.assertFalse(filteredFlights.isEmpty());
+        Assert.assertEquals(filteredFlights.size(), 1);
+        Assert.assertEquals(flight.toString(), filteredFlights.iterator().next().toString());
     }
 
     @Test
@@ -78,6 +84,8 @@ public class RulesTest {
                 twoDaysFromNow.plusHours(6), twoDaysFromNow.plusHours(8), twoDaysFromNow.plusHours(9), twoDaysFromNow.plusHours(11));
         List<Flight> filteredFlights = new TwoHoursTimeBetweenSegmentsFiltrationRule(Collections.singletonList(flight)).filter();
         Assert.assertFalse(filteredFlights.isEmpty());
+        Assert.assertEquals(filteredFlights.size(), 1);
+        Assert.assertEquals(flight.toString(), filteredFlights.iterator().next().toString());
     }
 
 }
